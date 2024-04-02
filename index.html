@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字时钟</title>
+    <style>
+        body {
+            background: rgb(255, 255, 255); /* 将背景颜色设置为色 */
+            color: rgb(0, 0, 0); /* 设置文字颜色为色 */
+            text-align: center;
+            font-size: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        img {
+            width: 150px;
+            height: 250px;
+        }
+    </style>
+    <script>
+        function toDou(n) {
+            // 字符串添0
+            if (n < 10) {
+                return '0' + n;
+            } else {
+                return '' + n;
+            }
+        }
+
+        window.onload = function () {
+            var imgSet = document.getElementsByTagName('img');
+
+            function Ticker() {
+                var oDate = new Date();
+                // 01+34+45 添0
+                var str = toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
+
+                for (var i = 0; i < imgSet.length; i++) {
+                    imgSet[i].src = 'img/' + str.charAt(i) + '.png';
+                    // str[i] 改成 str.charAt(i) -- 取字符串的某一位，为了兼容低版本的浏览器
+                }
+            }
+
+            // 一秒刷新一次，但是刚开始会出现全0，是因为一秒之后才刷新
+            setInterval(Ticker, 1000);
+        };
+    </script>
+</head>
+<body>
+    <!-- 这里放置你的数字时钟图片 -->
+    <img src="img/0.png" alt="0" />
+    <img src="img/0.png" alt="0" />  :
+    <img src="img/0.png" alt="0" />
+    <img src="img/0.png" alt="0" />  :
+    <img src="img/0.png" alt="0" />
+    <img src="img/0.png" alt="0" />
+</body>
+</html>
